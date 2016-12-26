@@ -7,6 +7,6 @@
  这里username是学号,password 是Base64算法加密传输的。至于cookie, who cares.
  
  #
- 然后就用模拟这次提交。写入![link](buaaNet/buaaNet/buaaNet.py) 里面。这里是用百度的连接来测试网络是否通畅。在main 函数里面每若干分钟执行一次提交。
+ 然后就用模拟这次提交。写在(buaaNet/buaaNet/buaaNet.py) 里面。这里是用百度的连接来测试网络是否通畅。在main 函数里面每若干分钟执行一次提交。
 #
- 最后把![link](buaaNet/buaaNet/buaaNet.bat) 放到 windows的启动命令里面，就可以随时登录了。
+ 最后把(buaaNet/buaaNet/buaaNet.bat) 放到 windows的启动命令里面，就可以随时登录了。
