@@ -1,2 +1,3 @@
-﻿python buaaNet.py
+﻿@echo
+python buaaNet.py
 
