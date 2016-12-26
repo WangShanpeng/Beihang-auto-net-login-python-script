@@ -25,7 +25,7 @@ def internet_on():
 if __name__ == '__main__':
     while True:
         if not internet_on():
-            Buaa = login(Username='by1206148',Password='19880207')
+            Buaa = login(Username='by222222',Password='111111') # 111111替换为密码，by222222替换为学号
             Buaa.auto_login()
             print "user login"
         time.sleep(60*2)
