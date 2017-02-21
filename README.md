@@ -1,7 +1,7 @@
 # 北航校园网自动拨号Python脚本
 
 ![image](images/login.png)
-北航实验室上网每天早上四点都会所有电脑下线，再上线需要手工登录。这个脚本是为了自动进行网上注册，解决每天手工登录问题。
+北航实验室上网每天早上四点都会所有电脑下线，再上线需要手工登录。这个脚本是为了自动进行网上注册，解决每天手工登录问题。本脚本分为Python2和Python3两个版本，推荐使用Python3。
 
 ## 实现原理
 
@@ -11,11 +11,11 @@
 ![image](images/sniffer_packet.png)
 这里username是学号，password是Base64算法加密传输的。至于cookie，who cares。
 
-然后就用Python模拟这次提交。写在(https://github.com/sienaiwun/Beihang-auto-net-login-python-script/tree/master/buaaNet/buaaNet/buaaNet.py)里面。这里是用百度的连接来测试网络是否通畅。在main函数里面每若干分钟判断是否可以联网，如果断线则模拟执行一次提交。
+然后就用Python模拟这次提交。写在[buaaNet.py](https://github.com/sienaiwun/Beihang-auto-net-login-python-script/tree/master/Python3/buaaNet.py)里面。这里是用百度的连接来测试网络是否通畅。在main函数里面每若干分钟判断是否可以联网，如果断线则模拟执行一次提交。
 
 ## Windows下自动运行脚本的方法
 
-把(https://github.com/sienaiwun/Beihang-auto-net-login-python-script/tree/master/buaaNet/buaaNet/buaaNet.bat)放到Windows的启动命令里面，或者把快捷方式放到启动菜单里面，就可以随时登录了。
+把[bat文件](https://github.com/sienaiwun/Beihang-auto-net-login-python-script/tree/master/Python3/buaaNet.bat)放到Windows的启动命令里面，或者把快捷方式放到启动菜单里面，就可以随时登录了。
 
 ## Linux自动运行脚本的方法
 
