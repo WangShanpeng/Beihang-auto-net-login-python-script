@@ -5,6 +5,7 @@ import urllib.error
 import urllib.parse
 import base64
 import time
+from datetime import datetime
 
 class login:
     def __init__(self,Username,Password):
@@ -16,13 +17,17 @@ class login:
         req = urllib.request.Request(url=self.Url,data=self.Data)
         req.add_header('User-Agent','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36')
         with urllib.request.urlopen(req) as f:
-            print('User: ' + Username.upper() + ' login succeed!')
-            print('Status:', f.status, f.reason)
-            for k, v in f.getheaders():
-                print('%s: %s' % (k, v))
-            print('Data: ' + f.read().decode('utf-8'))
-        
-#####################################################
+            t = f.read().decode('utf-8')
+            if t[0:8] == 'login_ok':
+                print(Username.upper() + ' login successfully!')
+            else:
+                print(t)
+            print(datetime.now())
+            # print('Data: ' + f.read().decode('utf-8'))
+            # print('Status:', f.status, f.reason)
+            # for k, v in f.getheaders():
+            #     print('%s: %s' % (k, v))
+
 def internet_on():
     try:
         urllib.request.urlopen('https://www.baidu.com/', timeout=1)
@@ -30,7 +35,6 @@ def internet_on():
     except urllib.error.URLError as err:
         return False
 
-#####################################################
 if __name__ == '__main__':
     while True:
         if not internet_on():

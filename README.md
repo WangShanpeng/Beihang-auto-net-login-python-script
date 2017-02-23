@@ -18,7 +18,13 @@
 
 ## Linux自动运行脚本的方法
 
-这里以树莓派为例，有两种方法。
+首先为`buaaNet.py`添加执行权限：
+
+```shell
+$ chmod a+x hello.py
+```
+
+这样就能像`.exe`文件那样直接运行`.py`文件了，因为Python脚本中注明了所使用的版本，所以可以自动选择Python2或者Python3运行。接着将`buaaNet.py`添加到系统自动运行的列表中，这里以树莓派为例，有两种方法。
 
 ### 使用`rc.local`方法添加
 
@@ -32,7 +38,7 @@
 
 在你的树莓派上，选择一个文本编辑器编辑`/etc/rc.local`文件。你必须使用root权限编辑，例如：
 ```shell
-sudo nano /etc/rc.local
+$ sudo nano /etc/rc.local
 ```
 在注释后面添加命令，但是要保证`exit 0`这行代码在最后，然后保存文件退出。
 
@@ -40,22 +46,22 @@ sudo nano /etc/rc.local
 
 如果你的命令需要长时间运行（例如死循环）或者运行后不能退出，那么你必须确保在命令的最后添加“&”符号让命令运行在其它进程，例如：
 ```shell
-python /home/pi/myscript.py &  
+/home/pi/buaaNet.py &  
 ```
 否则，这个脚本将无法结束，树莓派就无法启动。这个“&”符号允许命令运行在一个指定的进程中，然后继续运行启动进程。
 
-另外，确保文件名使用绝对路径，而不是相对于你的home目录的相对路径。例如：使用`/home/pi/myscript.py`而不是用`myscript.py`。
+另外，确保文件名使用绝对路径，而不是相对于你的home目录的相对路径。例如：使用`/home/pi/buaaNet.py`而不是用`buaaNet.py`。
 
 ###  窗口系统启动后，自动运行自定义的程序的实现方法
-进入当前用户HOME目录下的`.config/autostart`目录，生成一个*.desktop文件（比如：xxx.desktop），命令如下:
+进入当前用户HOME目录下的`.config/autostart`目录，生成一个*.desktop文件（比如：buaaNet.desktop），命令如下:
 ```shell
-sudo nano ~/.config/autostart/xxx.desktop
+$ sudo nano ~/.config/autostart/buaaNet.desktop
 ```
 输入以下文件内容:
 ```
 [Desktop Entry]
 Type=Application
-Exec=python /home/pi/myscript.py
+Exec=/home/pi/buaaNet.py
 ```
 最后一句Exec的值就是要启动的程序名（最好是全路径的可执行文件名），此处是运行一个Python脚本。保存退出，重启机器，脚本就会在进入窗口系统自动运行了。
 
@@ -64,14 +70,14 @@ Exec=python /home/pi/myscript.py
 ### 查看进程是否运行
 我们就可以使用下面的命令查看Python进程的id：
 ```shell
-ps -ef |grep python
+$ ps -ef |grep python
 ```
 或者
 ```shell
-pstree |grep python
+$ pstree |grep python
 ```
 第二列即为当前进程的id，如果需要直接终止Python程序，执行：
 ```shell
-kill -9 pid
+$ kill -9 pid
 ```
 再查看一下进程，发现脚本进程已经消失了，搞定。
